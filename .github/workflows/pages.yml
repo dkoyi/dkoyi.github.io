@@ -1,0 +1,51 @@
+# Deploys the site to GitHub Pages.
+# It refreshes the contribution heatmap data at deploy time, so it never commits to the repo.
+# Runs on every push to main and once a day.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh contribution data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api graphql -f query='query{user(login:"dkoyi"){contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{date contributionCount}}}}}}' \
+            --jq '.data.user.contributionsCollection.contributionCalendar | {total: .totalContributions, updated: (now|todate), days: [.weeks[].contributionDays[] | [.date, .contributionCount]]}' \
+            > /tmp/contributions.json \
+            && mv /tmp/contributions.json assets/data/contributions.json \
+            || echo "Keeping the saved data"
+
+      - name: Collect site files
+        run: |
+          mkdir -p _site
+          cp -r index.html assets .nojekyll _site/
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

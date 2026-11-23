@@ -1,57 +1,66 @@
 /* ==========================================================================
    Dhanush Koyi portfolio
-   Type: Fraunces (display), Inter (text), JetBrains Mono (labels)
-   Palette: warm neutrals with one indigo accent. Tokens live in :root.
+   Type: Bricolage Grotesque (display), Inter (text), JetBrains Mono (labels)
+   Palette: violet on lavender paper, deep midnight in dark mode.
+   Tokens live in :root and in the two dark blocks below. Change them first.
    ========================================================================== */
 
 :root {
   color-scheme: light dark;
 
-  --bg: #fafaf9;
+  --bg: #faf8ff;
   --surface: #ffffff;
-  --surface-2: #f3f2ef;
-  --text: #16161a;
-  --text-muted: #57575f;
-  --border: #e4e2dd;
-  --border-strong: #cfccc5;
-  --accent: #4338ca;           /* indigo 700, 7.9:1 on white */
-  --accent-soft: #eef0ff;
+  --surface-2: #f3effc;
+  --text: #1b1233;
+  --text-muted: #5a5273;
+  --border: #e6dff5;
+  --border-strong: #cdc2e6;
+  --accent: #6d28d9;
+  --accent-2: #a855f7;
+  --accent-soft: #f1eaff;
   --accent-contrast: #ffffff;
-  --award-bg: #fff4d6;
+  --btn-from: #5b21b6;
+  --btn-to: #7c3aed;
+  --glow: rgb(168 85 247 / 0.22);
+  --award-bg: #fff1d1;
   --award-text: #7a4a00;
   --live-bg: #e3f6ec;
   --live-text: #11603a;
   --todo-bg: #fde2e2;
   --todo-text: #9b1c1c;
   --focus: #2563eb;
+  --shadow: 0 1px 2px rgb(46 16 101 / 0.05), 0 6px 20px rgb(46 16 101 / 0.08);
+  --shadow-hover: 0 2px 4px rgb(46 16 101 / 0.08), 0 14px 36px rgb(91 33 182 / 0.18);
 
   --brand-ss: #3d6098;         /* Sport Sitters blue, used only for its wordmark */
 
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 
-  --radius: 16px;
-  --radius-sm: 10px;
-  --shadow: 0 1px 2px rgb(22 22 26 / 0.04), 0 4px 16px rgb(22 22 26 / 0.05);
-  --shadow-hover: 0 2px 4px rgb(22 22 26 / 0.06), 0 12px 32px rgb(22 22 26 / 0.09);
-  --container: 72rem;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --container: 76rem;
   --gutter: clamp(1rem, 4vw, 2rem);
   --space-section: clamp(4rem, 9vw, 7rem);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0b0d12;
-    --surface: #12151c;
-    --surface-2: #1a1e27;
-    --text: #ecedf0;
-    --text-muted: #a2a6b2;
-    --border: #252a35;
-    --border-strong: #353b48;
-    --accent: #a5b4fc;
-    --accent-soft: #1d2140;
-    --accent-contrast: #0f1235;
+    --bg: #0c0a16;
+    --surface: #151127;
+    --surface-2: #1d1833;
+    --text: #f2eeff;
+    --text-muted: #b4aacf;
+    --border: #2b2547;
+    --border-strong: #3d3563;
+    --accent: #c4b5fd;
+    --accent-2: #8b5cf6;
+    --accent-soft: #231a45;
+    --accent-contrast: #1a0d45;
+    --btn-from: #c4b5fd;
+    --btn-to: #ddd2ff;
+    --glow: rgb(139 92 246 / 0.28);
     --award-bg: #3a2c0c;
     --award-text: #fcd98a;
     --live-bg: #0f3324;
@@ -59,21 +68,25 @@
     --todo-bg: #4a1c1c;
     --todo-text: #fecaca;
     --focus: #93c5fd;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.35);
-    --shadow-hover: 0 12px 32px rgb(0 0 0 / 0.45);
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 20px rgb(0 0 0 / 0.3);
+    --shadow-hover: 0 14px 36px rgb(139 92 246 / 0.25);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0b0d12;
-  --surface: #12151c;
-  --surface-2: #1a1e27;
-  --text: #ecedf0;
-  --text-muted: #a2a6b2;
-  --border: #252a35;
-  --border-strong: #353b48;
-  --accent: #a5b4fc;
-  --accent-soft: #1d2140;
-  --accent-contrast: #0f1235;
+  --bg: #0c0a16;
+  --surface: #151127;
+  --surface-2: #1d1833;
+  --text: #f2eeff;
+  --text-muted: #b4aacf;
+  --border: #2b2547;
+  --border-strong: #3d3563;
+  --accent: #c4b5fd;
+  --accent-2: #8b5cf6;
+  --accent-soft: #231a45;
+  --accent-contrast: #1a0d45;
+  --btn-from: #c4b5fd;
+  --btn-to: #ddd2ff;
+  --glow: rgb(139 92 246 / 0.28);
   --award-bg: #3a2c0c;
   --award-text: #fcd98a;
   --live-bg: #0f3324;
@@ -81,8 +94,8 @@
   --todo-bg: #4a1c1c;
   --todo-text: #fecaca;
   --focus: #93c5fd;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.35);
-  --shadow-hover: 0 12px 32px rgb(0 0 0 / 0.45);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 20px rgb(0 0 0 / 0.3);
+  --shadow-hover: 0 14px 36px rgb(139 92 246 / 0.25);
 }
 
 /* ---------- Base ---------- */
@@ -182,8 +195,8 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 }
 .btn:hover { border-color: var(--text); }
 .btn:active { transform: translateY(1px); }
-.btn--primary { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
-.btn--primary:hover { border-color: var(--accent); filter: brightness(1.1); }
+.btn--primary { background: linear-gradient(135deg, var(--btn-from), var(--btn-to)); border-color: transparent; color: var(--accent-contrast); box-shadow: 0 8px 22px var(--glow); }
+.btn--primary:hover { border-color: transparent; filter: brightness(1.08); box-shadow: 0 10px 28px var(--glow); }
 .btn--icon { width: 44px; padding: 0; }
 .btn--icon .ico { width: 1.2rem; height: 1.2rem; }
 
@@ -207,8 +220,8 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 /* ---------- Hero ---------- */
 .hero { padding-block: clamp(4rem, 13vw, 8.5rem) clamp(1rem, 4vw, 2rem); }
 .hero__title {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(2.75rem, 8.5vw, 5.25rem); line-height: 1.02; letter-spacing: -0.03em;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(2.75rem, 8.5vw, 5.25rem); line-height: 1.02; letter-spacing: -0.035em;
   margin-bottom: 1.25rem;
 }
 .hero__lead { font-size: clamp(1.15rem, 2.3vw, 1.4rem); color: var(--text-muted); max-width: 34ch; line-height: 1.5; margin-bottom: 2rem; }
@@ -284,7 +297,7 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 /* ---------- Sections ---------- */
 .section { padding-top: var(--space-section); }
 .section__title {
-  font-family: var(--font-display); font-weight: 700;
+  font-family: var(--font-display); font-weight: 800;
   font-size: clamp(2rem, 4.5vw, 2.85rem); letter-spacing: -0.02em; margin-bottom: 0.75rem;
 }
 .section__intro { color: var(--text-muted); max-width: 58ch; font-size: 1.05rem; margin-bottom: 2.5rem; }

@@ -164,6 +164,24 @@
     });
   }
 
+  // ----- Highlight the nav link for the section in view -----
+  var navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+  if (navLinks.length && "IntersectionObserver" in window) {
+    var byId = {};
+    navLinks.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (a) { a.removeAttribute("aria-current"); });
+        if (byId[e.target.id]) byId[e.target.id].setAttribute("aria-current", "location");
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) spy.observe(el);
+    });
+  }
+
   // ----- Footer year -----
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();

@@ -147,7 +147,12 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
   border-bottom: 1px solid var(--border);
 }
 .nav { display: flex; align-items: center; justify-content: space-between; min-height: 4rem; gap: 1rem; }
-.nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+.nav__brand { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+.nav__mark {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--btn-from), var(--btn-to)); color: var(--accent-contrast);
+  font: 800 0.8rem/1 var(--font-sans); letter-spacing: 0; box-shadow: 0 4px 14px var(--glow);
+}
 .nav__links { list-style: none; display: flex; align-items: center; gap: 0.15rem; margin: 0; padding: 0; }
 .nav__links a {
   display: inline-block; padding: 0.5rem 0.8rem; border-radius: 999px;
@@ -155,6 +160,16 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
   transition: color 0.15s, background-color 0.15s;
 }
 .nav__links a:hover { color: var(--text); background: var(--surface-2); }
+.nav__links a[aria-current] { color: var(--accent); background: var(--accent-soft); }
+.nav__links a.icon-btn {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+}
+.nav__links a.icon-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.icon-btn .ico { width: 1.25rem; height: 1.25rem; }
+@media (min-width: 761px) {
+  .icon-btn__text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
 .nav__toggle, .theme-toggle {
   display: inline-grid; place-items: center;
   width: 44px; height: 44px; border-radius: 999px;
@@ -180,6 +195,7 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
   }
   .nav__links.is-open { display: flex; }
   .nav__links a { padding: 0.85rem 0.5rem; font-size: 1.05rem; border-radius: var(--radius-sm); }
+  .nav__links a.icon-btn { display: flex; justify-content: flex-start; align-items: center; gap: 0.6rem; width: auto; height: auto; border: 0; background: transparent; color: var(--text-muted); padding: 0.85rem 0.5rem; }
   .theme-toggle { margin: 0.5rem 0 0; }
 }
 

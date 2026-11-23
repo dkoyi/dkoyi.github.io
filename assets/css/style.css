@@ -142,8 +142,9 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 .eyebrow {
   font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500;
   text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.65rem;
 }
+.eyebrow::before { content: ""; width: 26px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
 
 /* ---------- Header and nav ---------- */
 .site-header {
@@ -444,30 +445,30 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 .role::before {
   content: ""; position: absolute; left: -7px; top: 0.45rem;
   width: 12px; height: 12px; border-radius: 50%;
-  background: var(--bg); border: 2px solid var(--accent);
+  background: var(--bg); border: 2px solid var(--accent-2);
 }
-.role__title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.15rem; }
+.role__title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 0.15rem; }
 .role__meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.6rem; }
 .role p:last-child { margin-bottom: 0; color: var(--text-muted); max-width: 70ch; }
 
 /* ---------- Skills and panels ---------- */
 .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
 .skills { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
-.skills h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.9rem; }
+.skills h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.9rem; }
 
 /* ---------- Education ---------- */
 .edu { display: grid; gap: 1.25rem; }
 @media (min-width: 820px) { .edu { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: start; } }
-.edu__school { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; margin-bottom: 0.3rem; }
+.edu__school { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
 .edu__degree { color: var(--text-muted); margin: 0; }
 .edu__list { margin: 0; padding-left: 1.1rem; }
 .edu__list li { margin-bottom: 0.45rem; }
-.edu__list li::marker { color: var(--accent); }
+.edu__list li::marker { color: var(--accent-2); }
 
 /* ---------- Contact and footer ---------- */
 .contact { padding-bottom: var(--space-section); }
 .contact__box {
-  background: var(--accent-soft); border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface) 85%); border: 1px solid var(--border);
   border-radius: calc(var(--radius) + 4px); padding: clamp(1.75rem, 5vw, 3.5rem);
 }
 .contact__box .section__intro { margin-bottom: 1.75rem; }

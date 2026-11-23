@@ -266,7 +266,7 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 /* ---------- Commit heatmap ---------- */
 .commits { margin: 3rem 0 0; padding: 1.5rem; }
 .commits__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; margin-bottom: 1rem; }
-.commits__title { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; margin: 0; }
+.commits__title { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.02em; margin: 0; }
 .commits__total { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin: 0; }
 .commits__scroll { overflow-x: auto; padding-bottom: 0.25rem; scrollbar-width: thin; }
 .commits__chart {
@@ -274,7 +274,7 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
   display: grid; grid-template-columns: auto max-content; grid-template-rows: auto auto;
   column-gap: 0.5rem; row-gap: 0.35rem; width: max-content; margin-inline: auto;
 }
-@media (min-width: 1100px) { .commits__chart { --cell: 13px; } }
+@media (min-width: 1100px) { .commits__chart { --cell: 14px; } }
 .commits__months {
   grid-column: 2; display: grid; grid-auto-flow: column; grid-auto-columns: var(--cell); column-gap: var(--gap);
   font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); height: 1rem; line-height: 1rem;
@@ -294,11 +294,24 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
 .commits__legend .c { width: 11px; height: 11px; display: inline-block; }
 .commits__legend .c:first-of-type { margin-left: 0.3rem; }
 .commits__legend .c:last-of-type { margin-right: 0.3rem; }
-.c { border-radius: 3px; background: var(--surface-2); outline: 1px solid color-mix(in srgb, var(--border) 60%, transparent); outline-offset: -1px; transition: transform 0.15s, opacity 0.2s; }
-.c[data-l="1"] { background: color-mix(in srgb, var(--accent) 30%, var(--surface)); }
-.c[data-l="2"] { background: color-mix(in srgb, var(--accent) 55%, var(--surface)); }
-.c[data-l="3"] { background: color-mix(in srgb, var(--accent) 78%, var(--surface)); }
-.c[data-l="4"] { background: var(--accent); }
+.commits {
+  --h0: #ece6f8; --h1: #d3bef4; --h2: #af89ea; --h3: #8d57e1; --h4: #6d28d9;
+}
+:root[data-theme="dark"] .commits { --h0: #1d1833; --h1: #3b2a73; --h2: #5b3fb0; --h3: #8b5cf6; --h4: #c4b5fd; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .commits { --h0: #1d1833; --h1: #3b2a73; --h2: #5b3fb0; --h3: #8b5cf6; --h4: #c4b5fd; }
+}
+.commits.panel { background: linear-gradient(160deg, var(--accent-soft), var(--surface) 60%); }
+.c { border-radius: 3px; background: var(--h0); transition: transform 0.15s, opacity 0.2s; }
+.c[data-l="1"] { background: var(--h1); }
+.c[data-l="2"] { background: var(--h2); }
+.c[data-l="3"] { background: var(--h3); }
+.c[data-l="4"] { background: var(--h4); }
+@keyframes cell-in { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  /* fill backwards only, so the focus highlight below can still dim and lift cells */
+  .commits__grid .c:not(.c--pad) { animation: cell-in 0.45s ease-out backwards; animation-delay: var(--d, 0ms); }
+}
 .c--pad { visibility: hidden; }
 .commits__grid.is-focus .c { opacity: 0.25; }
 .commits__grid.is-focus .c.is-on { opacity: 1; transform: scale(1.25); }
@@ -312,7 +325,7 @@ code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surfa
   transition: border-color 0.15s, background-color 0.15s;
 }
 .event-chip:hover, .event-chip:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
-.event-chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+.event-chip__dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-2), var(--accent)); flex: none; }
 .event-chip__name { white-space: nowrap; }
 @media (max-width: 560px) {
   .commits__events li { flex: 1 1 100%; }

@@ -91,9 +91,11 @@
       frag.appendChild(pad);
     }
     var cells = {};
-    days.forEach(function (d) {
+    days.forEach(function (d, i) {
       var el = document.createElement("span");
       el.className = "c";
+      // fill in left to right, one week column at a time
+      el.style.setProperty("--d", Math.floor((firstDow + i) / 7) * 14 + "ms");
       el.dataset.l = level(d[1], max);
       el.dataset.date = d[0];
       el.title = d[1] + (d[1] === 1 ? " contribution on " : " contributions on ") + fmt(d[0]);
